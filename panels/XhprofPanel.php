@@ -31,6 +31,15 @@ class XhprofPanel extends Panel
         return 'Xhprof';
     }
 
+    public function getSummary()
+    {
+        return Yii::$app->view->render('@trntv/debug/xhprof/views/summary.php', [
+            'panel' => $this,
+            'active' => !empty($this->data),
+            'callCount' => count($this->data)
+        ]);
+    }
+
     /**
      * @inheritdoc
      */
@@ -60,16 +69,13 @@ class XhprofPanel extends Panel
     public function getModels()
     {
         if(!$this->_models){
-            $t_ct = $t_wt = $t_cpu = $t_mu = 0;
+            $t_ct = $t_wt = $t_cpu = $t_mu = $t_pmu = 0;
             foreach($this->data as $fn => $data){
                 $fn = explode('==>', $fn);
                 $function = isset($fn[1]) ? $fn[1] : $fn[0];
                 $parent = isset($fn[1]) ? $fn[0] : null;
                 $data['fn']= $function;
                 $t_ct += $data['ct'];
-                $t_wt += $data['wt'];
-                $t_cpu += $data['cpu'];
-                $t_mu += $data['mu'];
                 if(isset($this->_models[$function])){
                     $existingData = $this->_models[$function];
                     $this->_models[$function] = [
@@ -86,12 +92,19 @@ class XhprofPanel extends Panel
                     $this->_models[$function] = $data;
                     $this->_models[$function]['parents'] = [$parent];
                 }
+                if($parent === null){
+                    $t_wt = $data['wt'];
+                    $t_cpu = $data['cpu'];
+                    $t_mu = $data['mu'];
+                    $t_pmu = $data['pmu'];
+                }
             }
             foreach($this->_models as $f => $model){
                 $this->_models[$f]['w_ct'] = ($model['ct'] / $t_ct);
                 $this->_models[$f]['w_wt'] = ($model['wt'] / $t_wt);
                 $this->_models[$f]['w_cpu'] = ($model['cpu'] / $t_cpu);
                 $this->_models[$f]['w_mu'] = ($model['mu'] / $t_mu);
+                $this->_models[$f]['w_pmu'] = ($model['pmu'] / $t_pmu);
             }
         }
         return $this->_models;

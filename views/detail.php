@@ -8,16 +8,57 @@ $this->registerCss('.fn-row{cursor:pointer}')
 <?php
     $columns = [
         ['class' => 'yii\grid\SerialColumn'],
-        'fn',
-        'ct',
-        ['attribute'=>'w_ct', 'format'=>['percent', 2]],
-        'wt',
-        ['attribute'=>'w_wt', 'format'=>['percent', 2]],
-        'cpu',
-        ['attribute'=>'w_cpu', 'format'=>['percent', 2]],
-        'mu',
-        ['attribute'=>'w_mu', 'format'=>['percent', 2]],
-        'pmu'
+        [
+            'attribute'=>'fn',
+            'label'=>'Function name'
+        ],
+        [
+            'attribute'=>'ct',
+            'label'=>'Calls'
+        ],
+        [
+            'attribute'=>'w_ct',
+            'format'=>['percent', 2],
+            'label'=>'Calls (%)'
+        ],
+        [
+            'attribute'=>'wt',
+            'label'=>'Incl. Wall Time (μs)'
+        ],
+        [
+            'attribute'=>'w_wt',
+            'format'=>['percent', 2],
+            'label'=>'Incl. Wall Time (%)'
+        ],
+        [
+            'attribute'=>'cpu',
+            'label'=>'CPU (μs)'
+        ],
+        [
+            'attribute'=>'w_cpu',
+            'format'=>['percent', 2],
+            'label'=>'CPU (%)'
+        ],
+        [
+            'attribute'=>'mu',
+            'format'=>'integer',
+            'label'=>'Mem. Usage (B)'
+        ],
+        [
+            'attribute'=>'w_mu',
+            'format'=>['percent', 2],
+            'label'=>'Mem. Usage (%)'
+        ],
+        [
+            'attribute'=>'pmu',
+            'format'=>'integer',
+            'label'=>'Peak Usage (B)'
+        ],
+        [
+            'attribute'=>'w_pmu',
+            'format'=>['percent', 2],
+            'label'=>'Peak Usage (%)'
+        ]
     ]
 ?>
 <?php echo GridView::widget([

@@ -3,12 +3,13 @@ namespace trntv\debug\xhprof\models\search;
 use yii\base\Model;
 use yii\data\ArrayDataProvider;
 use yii\debug\components\search\Filter;
+use yii\debug\models\search\Base;
 
 /**
  * Author: Eugine Terentev <eugine@terentev.net>
  */
 
-class Xhprof extends Model
+class Xhprof extends Base
 {
     public $fn;
     public $ct;
@@ -23,17 +24,7 @@ class Xhprof extends Model
     public function rules()
     {
         return [
-            [['function'], 'safe'],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            // todo
+            [['fn'], 'safe'],
         ];
     }
 
@@ -62,6 +53,7 @@ class Xhprof extends Model
 
         $filter = new Filter();
         $this->addCondition($filter, 'fn', true);
+        $dataProvider->allModels = $filter->filter($models);
 
         return $dataProvider;
     }
