@@ -2,6 +2,10 @@ Yii2 debug xhprof panel
 =======================
 xhprof panel for Yii2 debug module
 
+IMPORTANT
+---------
+This is an early prototype, it is working, but pretty ugly. Contribute to it, to make it more pretty and awesome.
+
 Installation
 ------------
 
@@ -21,11 +25,6 @@ or add
 
 to the require section of your `composer.json` file.
 
-
 Usage
 -----
-
-Once the extension is installed, simply use it in your code by  :
-
-```php
-<?= \trntv\debug\xhprof\AutoloadExample::widget(); ?>```
+soon ;)

@@ -13,12 +13,17 @@
     ],
     "require": {
         "yiisoft/yii2": "*",
-        "yiisoft/yii2-debug": "*",
-        "perftools/xhgui": "dev-master"
+        "yiisoft/yii2-debug": "*"
+    },
+    "suggest": {
+        "ext-xhprof": "Xhprof PHP profiler"
     },
     "autoload": {
         "psr-4": {
             "trntv\\debug\\xhprof\\": ""
         }
+    },
+    "extra": {
+        "bootstrap": "trntv\\debug\\xhprof\\XhprofBootstrap"
     }
 }
