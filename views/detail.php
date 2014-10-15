@@ -67,6 +67,7 @@ $this->registerCss('.fn-row{cursor:pointer}')
     'options' => ['class' => 'detail-grid-view'],
     'filterModel' => $searchModel,
     'filterUrl' => $panel->getUrl(),
+    // todo: Change text to fit exact problem
     'emptyText'=>'There is no xhprof data on this request. You don\'t have xhprof installed or didn\'t run profiling with "_xhprof=1" query parameter or cookie key.',
     'afterRow'=>function($model, $key, $index, $grid) use($panel, $columns){
         $content = '';

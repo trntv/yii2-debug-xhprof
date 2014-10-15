@@ -6,6 +6,7 @@ use trntv\debug\xhprof\panels\XhprofPanel;
 use yii\base\Application;
 use yii\base\BootstrapInterface;
 use yii\base\Object;
+use yii\helpers\ArrayHelper;
 
 class XhprofBootstrap extends Object implements BootstrapInterface
 {
@@ -22,8 +23,19 @@ class XhprofBootstrap extends Object implements BootstrapInterface
             });
         }
         $modules = $app->getModules();
-        if($modules['debug']){
-            $modules['debug']['panels']['xhprof'] = ['class'=>XhprofPanel::className()];
+        if(isset($modules['debug']) && !ArrayHelper::getValue($modules['debug'], 'panels.xhprof')){
+            if(is_array($modules['debug'])){
+                $modules['debug']['panels']['xhprof'] = ['class'=>XhprofPanel::className()];
+            } else {
+                $modules['debug'] = [
+                    'class'=>$modules['debug'],
+                    'panels' => [
+                        'xhprof'=>[
+                            'class'=>XhprofPanel::className()
+                        ]
+                    ]
+                ];
+            }
         }
         $app->setModules($modules);
     }
