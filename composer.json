@@ -24,6 +24,6 @@
         }
     },
     "extra": {
-        "bootstrap": "trntv\\debug\\xhprof\\XhprofBootstrap"
+        "bootstrap": "trntv\\debug\\xhprof\\panels\\XhprofPanel"
     }
 }

@@ -9,6 +9,8 @@ namespace trntv\debug\xhprof\panels;
 
 use trntv\debug\xhprof\models\search\Xhprof;
 use Yii;
+use yii\base\Application;
+use yii\base\BootstrapInterface;
 use yii\debug\Panel;
 use yii\helpers\ArrayHelper;
 
@@ -19,7 +21,7 @@ use yii\helpers\ArrayHelper;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class XhprofPanel extends Panel
+class XhprofPanel extends Panel implements BootstrapInterface
 {
     private $_models = [];
 
@@ -38,6 +40,19 @@ class XhprofPanel extends Panel
             'active' => !empty($this->data),
             'callCount' => count($this->data)
         ]);
+    }
+
+    /**
+     * Bootstrap method to be called during application bootstrap stage.
+     * @param Application $app the application currently running
+     */
+    public function bootstrap($app)
+    {
+        if((isset($_GET['_xhprof']) || isset($_COOKIE['_xhprof'])) && function_exists('xhprof_enable')){
+            $app->on(Application::EVENT_BEFORE_REQUEST, function () use ($app) {
+                \xhprof_enable(\XHPROF_FLAGS_CPU + \XHPROF_FLAGS_MEMORY);
+            });
+        }
     }
 
     /**

@@ -25,6 +25,21 @@ or add
 
 to the require section of your `composer.json` file.
 
+add panel to your debug module configuration
+```
+'modules'=>[
+    ...
+    'debug'=>[
+        ...
+        'panels'=>[
+            ...
+            'xhprof'=>'\trntv\debug\xhprof\panels\XhprofPanel'
+        ]
+    ]
+    ...
+]
+```
+
 Usage
 -----
 soon ;)
