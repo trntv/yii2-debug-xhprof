@@ -78,7 +78,7 @@ class XhprofPanel extends Panel implements BootstrapInterface
         if(function_exists('xhprof_disable')){
             $data = xhprof_disable();
         }
-        return $data ?: [];
+        return isset($data) && $data !== null ? $data : [];
     }
 
     public function getModels()
