@@ -33,7 +33,9 @@ add panel to your debug module configuration
         ...
         'panels'=>[
             ...
-            'xhprof'=>'\trntv\debug\xhprof\panels\XhprofPanel'
+            'xhprof'=>[
+                'class'=>'\trntv\debug\xhprof\panels\XhprofPanel'
+            ]
         ]
     ]
     ...
