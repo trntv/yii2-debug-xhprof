@@ -2,6 +2,8 @@ Yii2 debug xhprof panel
 =======================
 xhprof panel for Yii2 debug module
 
+![screen_exaample](http://i.imgur.com/ENB8toL.png)
+
 IMPORTANT
 ---------
 This is an early prototype, it is working, but pretty ugly. Contribute to it, to make it more pretty and awesome.
